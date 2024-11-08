@@ -33,7 +33,7 @@ jobs:
       - name: Install Chrome WebDriver
         run: |
           LATEST_CHROMEDRIVER_VERSION=120.0.6099.109
-          curl -sS -o chromedriver_linux64.zip "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/120.0.6099.109/linux64/chrome-headless-shell-linux64.zip"
+          curl -sS -o chromedriver_linux64.zip "https://storage.googleapis.com/chrome-for-testing-public/120.0.6099.109/linux64/chrome-headless-shell-linux64.zip"
           if [ ! -f chromedriver_linux64.zip ]; then
             echo "Download failed: file not found."
             exit 1

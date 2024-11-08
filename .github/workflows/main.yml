@@ -4,13 +4,13 @@ name: IPTV All
 # 工作流触发条件
 on:
   push:
-    branches:
-      - main
   schedule:
     # 定义每天运行的任务
-    - cron: "0 16 * * *"
-      name: daily_task
+    - name: daily_task
       description: Run task every day at 4:00 PM
+      cron: "0 16 * * *"
+  branches:
+    - main
 
 # 定义工作的内容
 jobs:
@@ -34,6 +34,14 @@ jobs:
         run: |
           LATEST_CHROMEDRIVER_VERSION=120.0.6099.109
           curl -sS -o chromedriver_linux64.zip "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/120.0.6099.109/linux64/chrome-headless-shell-linux64.zip"
+          if [ ! -f chromedriver_linux64.zip ]; then
+            echo "Download failed: file not found."
+            exit 1
+          fi
+          if [ ! -s chromedriver_linux64.zip ]; then
+            echo "Download failed: file is empty."
+            exit 1
+          fi
           sudo unzip chromedriver_linux64.zip -d /usr/local/bin
           rm chromedriver_linux64.zip
 
@@ -47,8 +55,8 @@ jobs:
       
       - name: 提交更改
         run: |
-          git config --local user.email "你自己的github邮箱"
-          git config --local user.name "你自己的github用户名"
+          git config --local user.email "923453645@qq.com"
+          git config --local user.name "Hello-hao"
           git add .
           git commit *.txt -m "Add generated file"
           git push -f

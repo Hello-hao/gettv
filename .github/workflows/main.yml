@@ -4,13 +4,13 @@ name: IPTV All
 # 工作流触发条件
 on:
   push:
+    branches:
+      - main
   schedule:
     # 定义每天运行的任务
-    - name: daily_task
+    - cron: "0 16 * * *"
+      name: daily_task
       description: Run task every day at 4:00 PM
-      cron: "0 16 * * *"
-  branches:
-    - main
 
 # 定义工作的内容
 jobs:
@@ -47,8 +47,8 @@ jobs:
       
       - name: 提交更改
         run: |
-          git config --local user.email "923453645@qq.com"
-          git config --local user.name "Hello-hao"
+          git config --local user.email "你自己的github邮箱"
+          git config --local user.name "你自己的github用户名"
           git add .
           git commit *.txt -m "Add generated file"
           git push -f

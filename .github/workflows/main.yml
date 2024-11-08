@@ -4,13 +4,13 @@ name: IPTV All
 # 工作流触发条件
 on:
   push:
+    branches:
+      - main
   schedule:
     # 定义每天运行的任务
-    - name: daily_task
+    - cron: "0 16 * * *"
+      name: daily_task
       description: Run task every day at 4:00 PM
-      cron: "0 16 * * *"
-  branches:
-    - main
 
 # 定义工作的内容
 jobs:

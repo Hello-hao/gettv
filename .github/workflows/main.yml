@@ -33,15 +33,7 @@ jobs:
       - name: Install Chrome WebDriver
         run: |
           LATEST_CHROMEDRIVER_VERSION=120.0.6099.109
-          curl -sS -o chromedriver_linux64.zip "https://storage.googleapis.com/chrome-for-testing-public/120.0.6099.109/linux64/chrome-headless-shell-linux64.zip"
-          if [ ! -f chromedriver_linux64.zip ]; then
-            echo "Download failed: file not found."
-            exit 1
-          fi
-          if [ ! -s chromedriver_linux64.zip ]; then
-            echo "Download failed: file is empty."
-            exit 1
-          fi
+          curl -sS -o chromedriver_linux64.zip "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/120.0.6099.109/linux64/chrome-headless-shell-linux64.zip"
           sudo unzip chromedriver_linux64.zip -d /usr/local/bin
           rm chromedriver_linux64.zip
 
@@ -53,12 +45,6 @@ jobs:
       - name: Run script
         run: python ${{ github.workspace }}/IPTV.py
       
-      - name: Commit changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      - name: 下载文件
         run: |
-          git config --local user.email "923453645@qq.com"
-          git config --local user.name "Hello-hao"
-          git add .
-          git commit -m "Add generated file" || echo "No changes to commit"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/Hello-hao/gettv.git HEAD:main
+          echo "文件已生成并下载到工作目录中"

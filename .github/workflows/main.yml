@@ -53,6 +53,12 @@ jobs:
       - name: Run script
         run: python ${{ github.workspace }}/IPTV.py
       
-      - name: 下载文件
+      - name: 提交更改
         run: |
-          echo "文件已生成并下载到工作目录中"
+          git config --local user.email "923453645@qq.com"
+          git config --local user.name "hello-hao"
+          git add .
+          git commit *.txt -m "Add generated file"
+          git push -f
+
+

@@ -55,7 +55,7 @@ jobs:
       
       - name: Commit changes
         env:
-          GITHUB_TOKEN: ${{ secrets.API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
           git config --local user.email "923453645@qq.com"
           git config --local user.name "Hello-hao"

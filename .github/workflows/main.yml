@@ -53,10 +53,12 @@ jobs:
       - name: Run script
         run: python ${{ github.workspace }}/IPTV.py
       
-      - name: 提交更改
+      - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.email "923453645@qq.com"
           git config --local user.name "Hello-hao"
           git add .
-          git commit *.txt -m "Add generated file"
-          git push -f
+          git commit -m "Add generated file" || echo "No changes to commit"
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/Hello-hao/gettv.git HEAD:main
